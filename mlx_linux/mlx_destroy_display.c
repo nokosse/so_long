@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   mlx_destroy_display.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/07 12:16:22 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/07 18:29:54 by kvisouth         ###   ########.fr       */
+/*   Created: 2020/10/03 18:56:35 by mg                #+#    #+#             */
+/*   Updated: 2020/10/04 01:55:35 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "inc/so_long.h"
+#include "mlx_int.h"
 
-int	main(void)
+int	mlx_destroy_display(t_xvar *xvar)
 {
-	//open a window
-	void *mlx = mlx_init();
-    void *win = mlx_new_window(mlx, 640, 360, "Tutorial Window");
-    mlx_loop(mlx);
-    (void)win;
+	XCloseDisplay(xvar->display);
 }
