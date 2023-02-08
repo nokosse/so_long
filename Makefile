@@ -6,7 +6,7 @@
 #    By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/07 12:36:43 by kvisouth          #+#    #+#              #
-#    Updated: 2023/02/07 18:51:12 by kvisouth         ###   ########.fr        #
+#    Updated: 2023/02/08 10:44:52 by kvisouth         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,8 +28,7 @@ MLX_FLAGS = -lXext -lX11 -lm
 MLX_FILE = mlx_linux/libmlx.a
 
 all:
-	@echo -n "\033[31m\nCompiling...\033[0m"
-	@$(MAKE) $(NAME) > /dev/null && echo -en "\r\033[32mCompiled succesfully !!\033[0m\n"
+	@$(MAKE) $(NAME)
 
 $(NAME): $(OBJS) $(HEADERS) $(LIBFT) $(MLX_FILE)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT) $(MLX_FILE) $(MLX_FLAGS)
@@ -46,16 +45,14 @@ $(LIBFT):
 	make -C libft
 
 $(MLX_FILE):
-	make -C mlx_linux > /dev/null 2>&1
+	make -C mlx_linux
 
 clean:
-	@rm -rf obj 2> /dev/null || true
-	@make -C libft clean > /dev/null 2>&1 || true
-	@make -C mlx_linux clean > /dev/null 2>&1 || true
-
+	@rm -rf obj 
+	@make -C libft clean
+	@make -C mlx_linux clean
 fclean: clean
-	@echo "\033[32m\nDeleting files\n\033[0m"
-	@rm -f $(NAME) 2> /dev/null
-	@make -C libft fclean > /dev/null 2>&1
+	@rm -f $(NAME)
+	@make -C libft fclean
 
 re: fclean all
