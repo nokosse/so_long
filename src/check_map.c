@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 12:16:43 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/15 16:03:18 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/02/15 16:19:20 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,72 +32,17 @@ int	map_file_exist(int ac, char **av)
 	return (1);
 }
 
-// Subject ask to check if the map has :
-// 1. 1 player(P), 1 exit(E), 1 or + collectibles(C).
-// 2. Map is a rectangle (or square).
-// 3. Map is surrounded by walls. (1 are walls, 0 are empty space)
-// 4. ADVANCED! If there is a possible path to the exit (E)
-//
-// We will first check 2 then 3 then 1 then 4.
-// But before that, we have to make the map into a 2D array. (char **map)
-// Using char *get_next_line(int fd) to read the map line by line.
-// And put it into a 2D array. (char **map)
-
-// This function will get the height of the map.
-// By counting the number of lines in the file readed.
-int	get_map_height(char **path)
-{
-	int		fd;
-	char	*line;
-	int		height;
-
-	fd = open(path[1], O_RDONLY);
-	height = 0;
-	line = get_next_line(fd);
-	while (line != NULL)
-	{
-		height++;
-		free(line);
-		line = get_next_line(fd);
-	}
-	free(line);
-	close(fd);
-	return (height);
-}
-
-// This function will get the width of the map.
-// By counting the number of characters (ft_strlen) of the first line.
-// Then read all the lines to avoid still reachable memory.
-int	get_map_width(char **path)
-{
-	int		fd;
-	char	*line;
-	int		width;
-
-	fd = open(path[1], O_RDONLY);
-	line = get_next_line(fd);
-	width = ft_strlen(line);
-	free(line);
-	line = get_next_line(fd);
-	while (line != NULL)
-	{
-		free(line);
-		line = get_next_line(fd);
-	}
-	free(line);
-	close(fd);
-	return (width);
-}
-
 // This function will check if all the lines in the map are the same length.
 // By comparing the len of the first line with the len of the other lines.
-// Last line 
-int	check_map_width(int fd)
+// Last line don't always have a \n so we add 1 to the len.
+int	check_map_width(char **path)
 {
 	char	*line;
 	int		width;
 	int		line_width;
+	int		fd;
 
+	fd = open(path[1], O_RDONLY);
 	line = get_next_line(fd);
 	width = ft_strlen(line);
 	free(line);
@@ -112,6 +57,8 @@ int	check_map_width(int fd)
 		free(line);
 		line = get_next_line(fd);
 	}
+	free(line);
+	close(fd);
 	return (1);
 }
 
@@ -145,30 +92,33 @@ char	**ber_to_2d_array(char **path, int height, int width)
 	return (map);
 }
 
+// Subject ask to check if the map has :
+// 1. 1 player(P), 1 exit(E), 1 or + collectibles(C).
+// 2. Map is a rectangle (or square).
+// 3. Map is surrounded by walls. (1 are walls, 0 are empty space)
+// 4. ADVANCED! If there is a possible path to the exit (E)
+//
+// We will first check 2 then 3 then 1 then 4.
+// But before that, we have to make the map into a 2D array. (char **map)
+// Using char *get_next_line(int fd) to read the map line by line.
+// And put it into a 2D array. (char **map)
 int	check_map(int ac, char **av)
 {
-	int		fd;
 	int		height;
 	int		width;
 	char	**map;
 
-	if (!(map_file_exist(ac, av)))
+	if (!(map_file_exist(ac, av)) || !(check_map_width(av)))
 		return (0);
-	fd = open(av[1], O_RDONLY);
-	if (!(check_map_width(fd)))
-		return (0);
-	close(fd);
 	height = get_map_height(av);
 	width = get_map_width(av) - 1;
 	map = ber_to_2d_array(av, height, width);
-	int i = 0;
-	while (map[i] != NULL)
-		printf("%s\n", map[i++]);
-
+	// int i = 0;
+	// while (map[i] != NULL)
+	// 	printf("%s\n", map[i++]);
 	// i = 0;
 	// while (map[i] != NULL)
 	// 	free(map[i++]);
 	// free(map);
-	
-	return (1);
+	// return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 12:14:39 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/15 13:57:48 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/02/15 16:17:16 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 # include "../libft/inc/ft_printf.h"
 # include "../mlx_linux/mlx.h"
 
-// We will have to make structures for this project because
-// There is a lot of data and variables that we will need to use
 int	check_map(int ac, char **av);
+int	get_map_width(char **path);
+int	get_map_height(char **path);
 
 #endif
