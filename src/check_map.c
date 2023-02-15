@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 12:16:43 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/15 23:27:06 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/02/15 23:34:19 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,11 +110,8 @@ int	check_empty(char **path)
 
 // Subject ask to check if the map has :
 // 1. 1 player(P), 1 exit(E), 1 or + collectibles(C).
-// 2. Map is a rectangle (or square).
-// 3. Map is surrounded by walls. (1 are walls, 0 are empty space)
-// 4. ADVANCED! If there is a possible path to the exit (E)
-//
-// We will first check 2 then 3 then 1 then 4.
+// 4. If there is a possible path to the exit (E)
+// TODO : Check step 1 and 4
 int	check_map(int ac, char **av)
 {
 	int		height;
