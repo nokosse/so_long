@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 12:16:43 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/15 16:19:20 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/02/15 16:22:55 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,12 +113,13 @@ int	check_map(int ac, char **av)
 	height = get_map_height(av);
 	width = get_map_width(av) - 1;
 	map = ber_to_2d_array(av, height, width);
-	// int i = 0;
-	// while (map[i] != NULL)
-	// 	printf("%s\n", map[i++]);
-	// i = 0;
-	// while (map[i] != NULL)
-	// 	free(map[i++]);
-	// free(map);
-	// return (1);
+	
+	int i = 0;
+	while (map[i] != NULL)
+		printf("%s\n", map[i++]);
+	i = 0;
+	while (map[i] != NULL)
+		free(map[i++]);
+	free(map);
+	return (1);
 }

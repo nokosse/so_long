@@ -6,7 +6,7 @@
 #    By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/07 12:36:43 by kvisouth          #+#    #+#              #
-#    Updated: 2023/02/15 13:11:24 by kvisouth         ###   ########.fr        #
+#    Updated: 2023/02/15 16:21:31 by kvisouth         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@
 # And I compile my programe with a few more flags : -lXext -lX11 -lm	
 
 NAME = so_long
-SRCS = src/check_map.c \
+SRCS =	src/check_map.c \
+		src/check_map2.c \
 
 OBJS = $(SRCS:src/%.c=obj/%.o) obj/main.o
 HEADERS = inc/so_long.h
