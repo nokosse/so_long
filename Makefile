@@ -6,7 +6,7 @@
 #    By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/07 12:36:43 by kvisouth          #+#    #+#              #
-#    Updated: 2023/02/08 10:48:47 by kvisouth         ###   ########.fr        #
+#    Updated: 2023/02/15 11:18:50 by kvisouth         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRCS =
 OBJS = $(SRCS:src/%.c=obj/%.o) obj/main.o
 HEADERS = inc/so_long.h
 LIBFT = libft/libft.a
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g3
 CC = gcc
 MLX_FLAGS = -lXext -lX11 -lm
 MLX_FILE = mlx_linux/libmlx.a
