@@ -6,9 +6,12 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 12:14:39 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/09 18:29:17 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/02/15 13:10:28 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef SO_LONG_H
+# define SO_LONG_H
 
 # include <stdlib.h>
 # include <unistd.h>
@@ -24,3 +27,6 @@
 
 // We will have to make structures for this project because
 // There is a lot of data and variables that we will need to use
+int	check_map(int ac, char **av);
+
+#endif
