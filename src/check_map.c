@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 12:16:43 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/15 16:22:55 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/02/15 21:02:52 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,6 @@ char	**ber_to_2d_array(char **path, int height, int width)
 // 4. ADVANCED! If there is a possible path to the exit (E)
 //
 // We will first check 2 then 3 then 1 then 4.
-// But before that, we have to make the map into a 2D array. (char **map)
-// Using char *get_next_line(int fd) to read the map line by line.
-// And put it into a 2D array. (char **map)
 int	check_map(int ac, char **av)
 {
 	int		height;
@@ -113,13 +110,7 @@ int	check_map(int ac, char **av)
 	height = get_map_height(av);
 	width = get_map_width(av) - 1;
 	map = ber_to_2d_array(av, height, width);
-	
-	int i = 0;
-	while (map[i] != NULL)
-		printf("%s\n", map[i++]);
-	i = 0;
-	while (map[i] != NULL)
-		free(map[i++]);
-	free(map);
+	if (check_map_surrounded(map) == 0)
+		return (0);
 	return (1);
 }
