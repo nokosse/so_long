@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 12:14:39 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/15 13:10:28 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/02/15 13:57:48 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <fcntl.h>
 # include <limits.h>
 # include "../libft/inc/libft.h"
+# include "../libft/inc/get_next_line.h"
 # include "../libft/inc/ft_printf.h"
 # include "../mlx_linux/mlx.h"
 

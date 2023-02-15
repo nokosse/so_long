@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 12:16:22 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/15 13:13:14 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/02/15 15:59:12 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int ac, char **av)
 	if (check_map(ac, av) == 0)
 		return (write(2, "Error\n", 6) , 0);
 	else
-		write(1, "Map is valid\n", 13);
+		write(1, "\nMap is valid\n", 13);
 	// mlx = mlx_init();
 	// mlx_win = mlx_new_window(mlx, 1280, 720, "so_long");
 	// img = mlx_xpm_file_to_image(mlx, relative_path, &img_width, &img_height);

@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 12:16:43 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/15 13:50:40 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/02/15 16:03:18 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,20 +43,132 @@ int	map_file_exist(int ac, char **av)
 // Using char *get_next_line(int fd) to read the map line by line.
 // And put it into a 2D array. (char **map)
 
-char	**ber_to_2d_array(int fd)
+// This function will get the height of the map.
+// By counting the number of lines in the file readed.
+int	get_map_height(char **path)
 {
+	int		fd;
+	char	*line;
+	int		height;
+
+	fd = open(path[1], O_RDONLY);
+	height = 0;
+	line = get_next_line(fd);
+	while (line != NULL)
+	{
+		height++;
+		free(line);
+		line = get_next_line(fd);
+	}
+	free(line);
+	close(fd);
+	return (height);
+}
+
+// This function will get the width of the map.
+// By counting the number of characters (ft_strlen) of the first line.
+// Then read all the lines to avoid still reachable memory.
+int	get_map_width(char **path)
+{
+	int		fd;
+	char	*line;
+	int		width;
+
+	fd = open(path[1], O_RDONLY);
+	line = get_next_line(fd);
+	width = ft_strlen(line);
+	free(line);
+	line = get_next_line(fd);
+	while (line != NULL)
+	{
+		free(line);
+		line = get_next_line(fd);
+	}
+	free(line);
+	close(fd);
+	return (width);
+}
+
+// This function will check if all the lines in the map are the same length.
+// By comparing the len of the first line with the len of the other lines.
+// Last line 
+int	check_map_width(int fd)
+{
+	char	*line;
+	int		width;
+	int		line_width;
+
+	line = get_next_line(fd);
+	width = ft_strlen(line);
+	free(line);
+	line = get_next_line(fd);
+	while (line != NULL)
+	{
+		line_width = ft_strlen(line);
+		if (line[line_width - 1] != '\n')
+			line_width++;
+		if (line_width != width)
+			return (0);
+		free(line);
+		line = get_next_line(fd);
+	}
+	return (1);
+}
+
+// This function will create a 2D array of char
+// Being a representation of the map.
+// Each line will be \0 terminated instead of \n
+char	**ber_to_2d_array(char **path, int height, int width)
+{
+	int		fd;
+	char	*line;
 	char	**map;
 	int		i;
+
+	fd = open(path[1], O_RDONLY);
+	map = malloc(sizeof(char *) * (height + 1));
+	if (map == NULL)
+		return (NULL);
+	i = 0;
+	line = get_next_line(fd);
+	while (line != NULL)
+	{
+		map[i] = malloc(sizeof(char) * (width + 1));
+		ft_strlcpy(map[i], line, width + 1);
+		free(line);
+		line = get_next_line(fd);
+		i++;
+	}
+	map[i] = NULL;
+	free(line);
+	close(fd);
+	return (map);
 }
 
 int	check_map(int ac, char **av)
 {
 	int		fd;
+	int		height;
+	int		width;
 	char	**map;
 
 	if (!(map_file_exist(ac, av)))
 		return (0);
-	return (1);
 	fd = open(av[1], O_RDONLY);
+	if (!(check_map_width(fd)))
+		return (0);
 	close(fd);
+	height = get_map_height(av);
+	width = get_map_width(av) - 1;
+	map = ber_to_2d_array(av, height, width);
+	int i = 0;
+	while (map[i] != NULL)
+		printf("%s\n", map[i++]);
+
+	// i = 0;
+	// while (map[i] != NULL)
+	// 	free(map[i++]);
+	// free(map);
+	
+	return (1);
 }
