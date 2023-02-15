@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 12:16:43 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/15 21:02:52 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/02/15 23:27:06 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,22 @@ char	**ber_to_2d_array(char **path, int height, int width)
 	return (map);
 }
 
+// This function will check if the file is empty.
+// Pretending the file is valid.
+int	check_empty(char **path)
+{
+	int		fd;
+	char	*line;
+
+	fd = open(path[1], O_RDONLY);
+	line = get_next_line(fd);
+	if (line == NULL)
+		return (1);
+	free(line);
+	close(fd);
+	return (0);
+}
+
 // Subject ask to check if the map has :
 // 1. 1 player(P), 1 exit(E), 1 or + collectibles(C).
 // 2. Map is a rectangle (or square).
@@ -105,7 +121,7 @@ int	check_map(int ac, char **av)
 	int		width;
 	char	**map;
 
-	if (!(map_file_exist(ac, av)) || !(check_map_width(av)))
+	if (check_empty(av) || !(map_file_exist(ac, av)) || !(check_map_width(av)))
 		return (0);
 	height = get_map_height(av);
 	width = get_map_width(av) - 1;
@@ -113,4 +129,5 @@ int	check_map(int ac, char **av)
 	if (check_map_surrounded(map) == 0)
 		return (0);
 	return (1);
+	(void)map;
 }

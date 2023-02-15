@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 16:13:53 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/15 21:08:41 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/02/15 23:29:56 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,37 +58,50 @@ int	get_map_width(char **path)
 	return (width);
 }
 
+// This function return 1 if the line only contain '1'
+int	check_only_wall(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] != '1')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+// This function return 1 if the line[0] and line[len - 1] are '1'
+int	check_fst_lst_wall(char *line)
+{
+	int	len;
+
+	len = ft_strlen(line);
+	if (line[0] != '1' || line[len - 1] != '1')
+		return (0);
+	return (1);
+}
+
 // This function will check if the map is surrounded by walls.
-// We check if first line and last line are only walls.
-// Then we check if the first and last character of each line are walls.
-// Walls are represented by '1' in the map.
+// Use 'check_only_wall' on the first
+// Use 'check_fst_lst_wall' on the lines that are not the first and the last
+// Use 'check_only_wall' on the last
 int	check_map_surrounded(char **map)
 {
 	int	i;
-	int	j;
 
 	i = 0;
-	j = 0;
-	while (map[i] != NULL)
+	if (check_only_wall(map[0]) == 0)
+		return (0);
+	while (map[i + 1])
 	{
-		if (map[i][j] != '1')
-			return (0);
-		j = ft_strlen(map[i]) - 1;
-		if (map[i][j] != '1')
+		if (check_fst_lst_wall(map[i]) == 0)
 			return (0);
 		i++;
 	}
-	i = 0;
-	while (map[i] != NULL)
-	{
-		j = 0;
-		while (map[i][j] != '\0')
-		{
-			if ((i == 0 || (size_t)i == ft_strlen(map[i]) - 1) && map[i][j] != '1')
-				return (0);
-			j++;
-		}
-		i++;
-	}
+	if (check_only_wall(map[i]) == 0)
+		return (0);
 	return (1);
 }
