@@ -6,11 +6,24 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 23:35:29 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/16 12:10:07 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/02/16 16:26:26 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
+
+// This function takes height and width, and returns int *dimensions.
+// dimensions[0] = height
+// dimensions[1] = width
+int	*get_dims(int height, int width)
+{
+	int	*dimensions;
+
+	dimensions = malloc(sizeof(int) * 2);
+	dimensions[0] = height;
+	dimensions[1] = width;
+	return (dimensions);
+}
 
 // This function will check if there is 1 and only 1 character 'P' in map.
 int	check_play_map(char **map)
