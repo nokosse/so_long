@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map_main.c                                   :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 12:16:43 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/16 19:28:41 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/02/16 19:39:18 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,8 @@ char	**ber_to_2d_array(char **path, int height, int width)
 	while (line != NULL)
 	{
 		map[i] = malloc(sizeof(char) * (width + 1));
-		if (map[i] == NULL)
-			return (free_map(map));
+		if (!map[i])
+			return (NULL);
 		ft_strlcpy(map[i], line, width + 1);
 		free(line);
 		line = get_next_line(fd);
