@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 12:16:43 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/16 18:31:33 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/02/16 19:28:41 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,33 +33,51 @@ int	map_file_exist(int ac, char **av)
 }
 
 // This function will check if all the lines in the map are the same length.
-// By comparing the len of the first line with the len of the other lines.
-// Last line don't always have a \n so we add 1 to the len.
-int	check_map_width(char **path)
+// It read the first line and get it's length with ft_strlen.
+// Then it read all the other lines, comparing to the first line length.
+// If the length is different, it will return 0.
+// It frees the line readed and the line readed before.
+int	check_width_loop(int fd, int width)
 {
 	char	*line;
-	int		width;
-	int		line_width;
+	int		i;
+
+	line = get_next_line(fd);
+	while (line != NULL)
+	{
+		i = ft_strlen(line);
+		if (line[i - 1] != '\n')
+			i++;
+		free(line);
+		line = get_next_line(fd);
+		if (i != width)
+		{
+			i = 0;
+			while (i < width)
+			{
+				free(line);
+				line = get_next_line(fd);
+				i++;
+			}
+			return (0);
+		}
+	}
+	return (free(line), 1);
+}
+
+int	check_map_width(char **path)
+{
 	int		fd;
+	char	*line;
+	int		width;
 
 	fd = open(path[1], O_RDONLY);
 	line = get_next_line(fd);
 	width = ft_strlen(line);
 	free(line);
-	line = get_next_line(fd);
-	while (line != NULL)
-	{
-		line_width = ft_strlen(line);
-		if (line[line_width - 1] != '\n')
-			line_width++;
-		if (line_width != width)
-			return (0);
-		free(line);
-		line = get_next_line(fd);
-	}
-	free(line);
-	close(fd);
-	return (1);
+	if (!check_width_loop(fd, width))
+		return (close(fd), 0);
+	return (close(fd), 1);
 }
 
 // This function will create a 2D array of char
@@ -81,6 +99,8 @@ char	**ber_to_2d_array(char **path, int height, int width)
 	while (line != NULL)
 	{
 		map[i] = malloc(sizeof(char) * (width + 1));
+		if (map[i] == NULL)
+			return (free_map(map));
 		ft_strlcpy(map[i], line, width + 1);
 		free(line);
 		line = get_next_line(fd);
@@ -92,23 +112,6 @@ char	**ber_to_2d_array(char **path, int height, int width)
 	return (map);
 }
 
-// This function will check if the file is empty.
-// Pretending the file is valid.
-int	check_empty(char **path)
-{
-	int		fd;
-	char	*line;
-
-	fd = open(path[1], O_RDONLY);
-	line = get_next_line(fd);
-	if (line == NULL)
-		return (1);
-	free(line);
-	close(fd);
-	return (0);
-}
-
-// TODO : Check step 1 and 4
 int	check_map(int ac, char **av)
 {
 	int		height;
@@ -123,9 +126,9 @@ int	check_map(int ac, char **av)
 	dimensions = get_dims(height, width);
 	map = ber_to_2d_array(av, height, width);
 	if ((!check_map_surrounded(map)) || (!check_map_elements(map)))
-		return (free_map(map) , 0);
+		return (free_map(map), 0);
 	if (check_possible_path(map, dimensions) == 0)
-		return (free(dimensions) ,free_map(map) , 0);
-	return (free(dimensions), free_map(map) , 1);
+		return (free(dimensions), free_map(map), 0);
+	return (free(dimensions), free_map(map), 1);
 	(void)map;
 }

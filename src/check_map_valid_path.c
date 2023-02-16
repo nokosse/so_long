@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 11:14:42 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/16 17:50:29 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/02/16 19:13:12 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,8 +110,8 @@ int	check_possible_path(char **map, int *dimensions)
 {
 	int	*player_pos;
 	int	exit_row;
-	int row;
-	int col;
+	int	row;
+	int	col;
 
 	player_pos = player_col_row();
 	check_loop(map, dimensions, player_pos, &exit_row);

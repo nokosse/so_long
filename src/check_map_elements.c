@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 23:35:29 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/16 16:26:26 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/02/16 19:28:55 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	*get_dims(int height, int width)
 	int	*dimensions;
 
 	dimensions = malloc(sizeof(int) * 2);
+	if (dimensions == NULL)
+		return (NULL);
 	dimensions[0] = height;
 	dimensions[1] = width;
 	return (dimensions);
