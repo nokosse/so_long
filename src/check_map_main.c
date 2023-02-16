@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map.c                                        :+:      :+:    :+:   */
+/*   check_map_main.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 12:16:43 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/16 00:04:55 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/02/16 13:18:51 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,8 @@ int	check_map(int ac, char **av)
 	width = get_map_width(av) - 1;
 	map = ber_to_2d_array(av, height, width);
 	if ((!check_map_surrounded(map)) || (!check_map_elements(map)))
+		return (0);
+	if (check_possible_path(map, height, width) == 0)
 		return (0);
 	return (1);
 	(void)map;

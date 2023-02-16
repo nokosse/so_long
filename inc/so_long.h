@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 12:14:39 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/16 11:19:22 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/02/16 15:36:07 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ int	get_map_width(char **path);
 int	get_map_height(char **path);
 int	check_map_surrounded(char **map);
 int check_map_elements(char **map);
-int check_possible_path(char **map);
+int check_possible_path(char **map, int height, int width);
 
 #endif
