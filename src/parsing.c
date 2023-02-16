@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 12:16:43 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/16 19:39:18 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/02/16 19:41:31 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ int	check_map(int ac, char **av)
 	dimensions = get_dims(height, width);
 	map = ber_to_2d_array(av, height, width);
 	if ((!check_map_surrounded(map)) || (!check_map_elements(map)))
-		return (free_map(map), 0);
+		return (free(dimensions), free_map(map), 0);
 	if (check_possible_path(map, dimensions) == 0)
 		return (free(dimensions), free_map(map), 0);
 	return (free(dimensions), free_map(map), 1);
