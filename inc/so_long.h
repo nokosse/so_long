@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 12:14:39 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/16 16:20:30 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/02/16 18:03:55 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,13 @@
 # include "../libft/inc/ft_printf.h"
 # include "../mlx_linux/mlx.h"
 
-int	check_map(int ac, char **av);
-int	get_map_width(char **path);
-int	get_map_height(char **path);
-int	*get_dims(int height, int width);
-int	check_map_surrounded(char **map);
-int check_map_elements(char **map);
-int check_possible_path(char **map, int* dimensions);
+int		check_map(int ac, char **av);
+int		get_map_width(char **path);
+int		get_map_height(char **path);
+int		*get_dims(int height, int width);
+int		check_map_surrounded(char **map);
+int 	check_map_elements(char **map);
+int		check_possible_path(char **map, int* dimensions);
+void	free_map(char **map);
 
 #endif

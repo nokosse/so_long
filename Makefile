@@ -6,7 +6,7 @@
 #    By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/07 12:36:43 by kvisouth          #+#    #+#              #
-#    Updated: 2023/02/16 15:36:46 by kvisouth         ###   ########.fr        #
+#    Updated: 2023/02/16 18:02:52 by kvisouth         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRCS =	src/check_map_elements.c \
 		src/check_map_main.c \
 		src/check_map_surrounded.c \
 		src/check_map_valid_path.c \
+		src/check_map_utils.c \
 
 OBJS = $(SRCS:src/%.c=obj/%.o) obj/main.o
 HEADERS = inc/so_long.h
