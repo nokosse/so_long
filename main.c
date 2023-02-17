@@ -6,11 +6,13 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 12:16:22 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/17 10:53:37 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/02/17 11:25:46 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inc/so_long.h"
+
+/* If you want to check the parsing, go to src/parsing.c and read comments */
 
 int	main(int ac, char **av)
 {
@@ -24,7 +26,7 @@ int	main(int ac, char **av)
 	if (check_map(ac, av) == 0)
 		return (0);
 	else
-		write(1, "\nMap is valid\n", 13);
+		write(1, "Map is valid\n", 13);
 	// mlx = mlx_init();
 	// mlx_win = mlx_new_window(mlx, 1280, 720, "so_long");
 	// img = mlx_xpm_file_to_image(mlx, relative_path, &img_width, &img_height);

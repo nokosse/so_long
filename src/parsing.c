@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 12:16:43 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/17 10:48:07 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/02/17 11:22:33 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,14 @@ char	**ber_to_2d_array(char **path, int height, int width)
 	return (map);
 }
 
+// If the argument is not valid or map is empty, it will return 0.
+// It will parse the map to satisfy the following conditions:
+// - The map can only have these characters: 0, 1, C, E, P
+// - There can only by 1 exit, 1 player and at least 1 collectible.
+// - The map must be rectangular.
+// - The map must be surrounded by walls.
+// - There must be at least 1 path to the exit from P to E.
+// This is all the given conditions by the fr.subject.pdf
 int	check_map(int ac, char **av)
 {
 	int		height;
@@ -139,9 +147,25 @@ int	check_map(int ac, char **av)
 	if (check_possible_path(map, dimensions) == 0)
 	{
 		err();
-		write(2, "The goblin is trapped ! He can't reach the exit !\n", 50);
+		write(2, "There is no path to the exit for the goblin !\n", 46);
 		return (free(dimensions), free_map(map), 0);
 	}
 	return (free(dimensions), free_map(map), 1);
 	(void)map;
 }
+
+// To check if check_map() is working you can test the following cases :
+// - No arguments
+// - More than 1 argument
+// - Argument is not a .ber file
+// - Argument is .ber suffix but does not exist
+// - Argument is .ber suffix but is not readable
+// - Argument is .ber suffix but is empty
+//
+// To test a existing map with invalid rules :
+// - The map have something else than 0, 1, C, E, P
+// - The map don't have P, E or C
+// - The map have more than one P or E
+// - The map is not rectangular
+// - The map is not surrounded by walls
+// - The map have no path to the exit
