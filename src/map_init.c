@@ -6,36 +6,25 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 15:06:37 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/17 15:17:56 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/02/17 17:05:07 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
-// At the moment, will put "../assets/wall64.xpm" on '1' of **map.
+// map_dim[0] = height
+// map_dim[1] = width
 void	map_init(t_game game)
 {
-	void	*wall_img;
-	char	*wall_path;
-	int		img_width;
-	int		img_height;
-	int		i;
-	int		j;
+	int	height;
+	int	width;
 
-	wall_path = "../assets/wall64.xpm";
-	wall_img = mlx_xpm_file_to_image(game.mlx, wall_path, &img_width, &img_height);
-	i = 0;
-	while (game.map[i] != NULL)
-	{
-		j = 0;
-		while (game.map[i][j] != '\0')
-		{
-			if (game.map[i][j] == '1')
-			{
-				mlx_put_image_to_window(game.mlx, game.mlx_win, wall_img, j * 64, i * 64);
-			}
-			j++;
-		}
-		i++;
-	}
+	height = game.map_dim[0];
+	width = game.map_dim[1];
+	game.mlx_win = mlx_new_window(game.mlx, width * 64, height * 64, "so_long");
+	put_walls(game);
+	put_ground(game);
+	put_player(game);
+	put_coins(game);
+	put_exit(game);
 }
