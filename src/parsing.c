@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 12:16:43 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/16 19:41:31 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/02/17 10:48:07 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,18 @@ int	map_file_exist(int ac, char **av)
 	int	fd;
 	int	readed;
 
-	if ((ac != 2) || (ft_strncmp(av[1] + ft_strlen(av[1]) - 4, ".ber", 4) != 0))
-		return (0);
+	if (ac > 2)
+		return (err(), write(2, "More than 1 file specified.\n", 28), 0);
+	if (ac < 2)
+		return (err(), write(2, "No file specified.\n", 19), 0);
+	if (ft_strncmp(av[1] + ft_strlen(av[1]) - 4, ".ber", 4) != 0)
+		return (err(), write(2, "Specified file is not a .ber file.\n", 35), 0);
 	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
-		return (0);
+		return (err(), write(2, "Specified file does not exist.\n", 31), 0);
 	readed = read(fd, NULL, 0);
 	if (readed == -1)
-		return (0);
+		return (err(), write(2, "Specified file is not readable.\n", 32), 0);
 	close(fd);
 	return (1);
 }
@@ -76,7 +80,12 @@ int	check_map_width(char **path)
 	width = ft_strlen(line);
 	free(line);
 	if (!check_width_loop(fd, width))
-		return (close(fd), 0);
+	{
+		close(fd);
+		err();
+		return (write(2, "The map exist but is not rectangular !\n", 39), 0);
+		return (0);
+	}
 	return (close(fd), 1);
 }
 
@@ -119,7 +128,7 @@ int	check_map(int ac, char **av)
 	int		*dimensions;
 	char	**map;
 
-	if (check_empty(av) || !(map_file_exist(ac, av)) || !(check_map_width(av)))
+	if (!(map_file_exist(ac, av)) || check_empty(av) || !(check_map_width(av)))
 		return (0);
 	height = get_map_height(av);
 	width = get_map_width(av) - 1;
@@ -128,7 +137,11 @@ int	check_map(int ac, char **av)
 	if ((!check_map_surrounded(map)) || (!check_map_elements(map)))
 		return (free(dimensions), free_map(map), 0);
 	if (check_possible_path(map, dimensions) == 0)
+	{
+		err();
+		write(2, "The goblin is trapped ! He can't reach the exit !\n", 50);
 		return (free(dimensions), free_map(map), 0);
+	}
 	return (free(dimensions), free_map(map), 1);
 	(void)map;
 }

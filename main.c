@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 12:16:22 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/15 15:59:12 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/02/17 10:53:37 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int ac, char **av)
 	// void	*mlx_win;
 
 	if (check_map(ac, av) == 0)
-		return (write(2, "Error\n", 6) , 0);
+		return (0);
 	else
 		write(1, "\nMap is valid\n", 13);
 	// mlx = mlx_init();

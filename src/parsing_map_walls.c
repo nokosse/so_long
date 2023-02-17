@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map_surrounded.c                             :+:      :+:    :+:   */
+/*   parsing_map_walls.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 16:13:53 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/16 18:18:45 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/02/17 10:44:06 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,14 +94,17 @@ int	check_map_surrounded(char **map)
 
 	i = 0;
 	if (check_only_wall(map[0]) == 0)
-		return (0);
+		return (err(), write(2, "The map exist but is not closed !\n", 34), 0);
 	while (map[i + 1])
 	{
 		if (check_fst_lst_wall(map[i]) == 0)
-			return (0);
+		{
+			err();
+			return (write(2, "The map exist but is not closed !\n", 34), 0);
+		}
 		i++;
 	}
 	if (check_only_wall(map[i]) == 0)
-		return (0);
+		return (err(), write(2, "The map exist but is not closed !\n", 34), 0);
 	return (1);
 }
