@@ -6,7 +6,7 @@
 #    By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/07 12:36:43 by kvisouth          #+#    #+#              #
-#    Updated: 2023/02/16 19:36:22 by kvisouth         ###   ########.fr        #
+#    Updated: 2023/02/17 15:06:27 by kvisouth         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,9 @@ SRCS =	src/parsing_map_elem.c \
 		src/parsing_paths.c \
 		src/parsing_utils.c \
 		src/parsing.c \
+		src/get_map.c \
+		src/window_init.c \
+		src/map_init.c \
 
 OBJS = $(SRCS:src/%.c=obj/%.o) obj/main.o
 HEADERS = inc/so_long.h
