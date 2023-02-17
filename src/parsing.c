@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 12:16:43 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/17 11:22:33 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/02/17 11:35:13 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,12 @@ int	map_file_exist(int ac, char **av)
 	if (ac > 2)
 		return (err(), write(2, "More than 1 file specified.\n", 28), 0);
 	if (ac < 2)
-		return (err(), write(2, "No file specified.\n", 19), 0);
+	{
+		err();
+		write(2, "No file specified.\n", 19);
+		write(2, "Usage: ./so_long <map.ber>\n", 27);
+		return (0);
+	}
 	if (ft_strncmp(av[1] + ft_strlen(av[1]) - 4, ".ber", 4) != 0)
 		return (err(), write(2, "Specified file is not a .ber file.\n", 35), 0);
 	fd = open(av[1], O_RDONLY);
