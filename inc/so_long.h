@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 12:14:39 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/17 10:41:32 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/02/17 11:05:05 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # include "../libft/inc/ft_printf.h"
 # include "../mlx_linux/mlx.h"
 
+// MAP PARSING
 int		check_map(int ac, char **av);
 int		get_map_width(char **path);
 int		get_map_height(char **path);
