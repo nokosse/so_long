@@ -6,13 +6,14 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 23:35:29 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/17 10:58:28 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/02/17 11:02:50 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
-// This function will check if there is something else than 0, 1, C, E, P in map.
+// This function will check if there is something else than :
+// '0' , '1' , 'C' , 'E' , 'P' in the map.
 int	check_junk_char(char **map)
 {
 	int		i;
