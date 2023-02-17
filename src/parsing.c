@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 12:16:43 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/17 11:35:13 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/02/17 14:24:18 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,37 +94,39 @@ int	check_map_width(char **path)
 	return (close(fd), 1);
 }
 
+// Function deleted at the moment.
+//
 // This function will create a 2D array of char
 // Being a representation of the map.
 // Each line will be \0 terminated instead of \n
-char	**ber_to_2d_array(char **path, int height, int width)
-{
-	int		fd;
-	char	*line;
-	char	**map;
-	int		i;
-
-	fd = open(path[1], O_RDONLY);
-	map = malloc(sizeof(char *) * (height + 1));
-	if (map == NULL)
-		return (NULL);
-	i = 0;
-	line = get_next_line(fd);
-	while (line != NULL)
-	{
-		map[i] = malloc(sizeof(char) * (width + 1));
-		if (!map[i])
-			return (NULL);
-		ft_strlcpy(map[i], line, width + 1);
-		free(line);
-		line = get_next_line(fd);
-		i++;
-	}
-	map[i] = NULL;
-	free(line);
-	close(fd);
-	return (map);
-}
+// char	**ber_to_2d_array(char **path, int height, int width)
+// {
+// 	int		fd;
+// 	char	*line;
+// 	char	**map;
+// 	int		i;
+//
+// 	fd = open(path[1], O_RDONLY);
+// 	map = malloc(sizeof(char *) * (height + 1));
+// 	if (map == NULL)
+// 		return (NULL);
+// 	i = 0;
+// 	line = get_next_line(fd);
+// 	while (line != NULL)
+// 	{
+// 		map[i] = malloc(sizeof(char) * (width + 1));
+// 		if (!map[i])
+// 			return (NULL);
+// 		ft_strlcpy(map[i], line, width + 1);
+// 		free(line);
+// 		line = get_next_line(fd);
+// 		i++;
+// 	}
+// 	map[i] = NULL;
+// 	free(line);
+// 	close(fd);
+// 	return (map);
+// }
 
 // If the argument is not valid or map is empty, it will return 0.
 // It will parse the map to satisfy the following conditions:
@@ -146,7 +148,7 @@ int	check_map(int ac, char **av)
 	height = get_map_height(av);
 	width = get_map_width(av) - 1;
 	dimensions = get_dims(height, width);
-	map = ber_to_2d_array(av, height, width);
+	map = get_map(av);
 	if ((!check_map_surrounded(map)) || (!check_map_elements(map)))
 		return (free(dimensions), free_map(map), 0);
 	if (check_possible_path(map, dimensions) == 0)
