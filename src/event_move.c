@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 18:14:21 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/18 19:10:34 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/02/18 19:21:57 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,11 @@
 // Then we will need to redraw the map according to the changes made to the map.
 // Using map_init() will do the trick.
 
+// At the moment, for the test, the function will just move the player on
+// the map. It will swap C and P or 0 and P on **map
 void	move_up(t_game *game)
 {
-	printf("fonction pour bouger en haut\n");
+	printf("fonction pour bouger à gauche\n");
 	(void)game;
 }
 
