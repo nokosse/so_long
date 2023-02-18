@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:49:14 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/17 17:04:51 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/02/18 13:10:40 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 // w stands for width
 // h stands for height
 // g stands for game
-void	put_walls(t_game g)
+void	put_walls(t_game *g)
 {
 	t_texture	t;
 	int			w;
@@ -25,16 +25,16 @@ void	put_walls(t_game g)
 	int			j;
 
 	t.path = "./assets/wall64.xpm";
-	t.img = mlx_xpm_file_to_image(g.mlx, t.path, &w, &h);
+	t.img = mlx_xpm_file_to_image(g->mlx, t.path, &w, &h);
 	i = 0;
-	while (g.map[i] != NULL)
+	while (g->map[i] != NULL)
 	{
 		j = 0;
-		while (g.map[i][j] != '\0')
+		while (g->map[i][j] != '\0')
 		{
-			if (g.map[i][j] == '1')
+			if (g->map[i][j] == '1')
 			{
-				mlx_put_image_to_window(g.mlx, g.mlx_win, t.img, j * w, i * h);
+				mlx_put_image_to_window(g->mlx, g->win, t.img, j * w, i * h);
 			}
 			j++;
 		}
@@ -42,7 +42,7 @@ void	put_walls(t_game g)
 	}
 }
 
-void	put_ground(t_game g)
+void	put_ground(t_game *g)
 {
 	t_texture	t;
 	int			w;
@@ -51,16 +51,16 @@ void	put_ground(t_game g)
 	int			j;
 
 	t.path = "./assets/ground64.xpm";
-	t.img = mlx_xpm_file_to_image(g.mlx, t.path, &w, &h);
+	t.img = mlx_xpm_file_to_image(g->mlx, t.path, &w, &h);
 	i = 0;
-	while (g.map[i] != NULL)
+	while (g->map[i] != NULL)
 	{
 		j = 0;
-		while (g.map[i][j] != '\0')
+		while (g->map[i][j] != '\0')
 		{
-			if (g.map[i][j] == '0')
+			if (g->map[i][j] == '0')
 			{
-				mlx_put_image_to_window(g.mlx, g.mlx_win, t.img, j * w, i * h);
+				mlx_put_image_to_window(g->mlx, g->win, t.img, j * w, i * h);
 			}
 			j++;
 		}
@@ -68,7 +68,7 @@ void	put_ground(t_game g)
 	}
 }
 
-void	put_coins(t_game g)
+void	put_coins(t_game *g)
 {
 	t_texture	t;
 	int			w;
@@ -77,16 +77,16 @@ void	put_coins(t_game g)
 	int			j;
 
 	t.path = "./assets/coin64.xpm";
-	t.img = mlx_xpm_file_to_image(g.mlx, t.path, &w, &h);
+	t.img = mlx_xpm_file_to_image(g->mlx, t.path, &w, &h);
 	i = 0;
-	while (g.map[i] != NULL)
+	while (g->map[i] != NULL)
 	{
 		j = 0;
-		while (g.map[i][j] != '\0')
+		while (g->map[i][j] != '\0')
 		{
-			if (g.map[i][j] == 'C')
+			if (g->map[i][j] == 'C')
 			{
-				mlx_put_image_to_window(g.mlx, g.mlx_win, t.img, j * w, i * h);
+				mlx_put_image_to_window(g->mlx, g->win, t.img, j * w, i * h);
 			}
 			j++;
 		}
@@ -94,7 +94,7 @@ void	put_coins(t_game g)
 	}
 }
 
-void	put_exit(t_game g)
+void	put_exit(t_game *g)
 {
 	t_texture	t;
 	int			w;
@@ -103,16 +103,16 @@ void	put_exit(t_game g)
 	int			j;
 
 	t.path = "./assets/door_open64.xpm";
-	t.img = mlx_xpm_file_to_image(g.mlx, t.path, &w, &h);
+	t.img = mlx_xpm_file_to_image(g->mlx, t.path, &w, &h);
 	i = 0;
-	while (g.map[i] != NULL)
+	while (g->map[i] != NULL)
 	{
 		j = 0;
-		while (g.map[i][j] != '\0')
+		while (g->map[i][j] != '\0')
 		{
-			if (g.map[i][j] == 'E')
+			if (g->map[i][j] == 'E')
 			{
-				mlx_put_image_to_window(g.mlx, g.mlx_win, t.img, j * w, i * h);
+				mlx_put_image_to_window(g->mlx, g->win, t.img, j * w, i * h);
 			}
 			j++;
 		}
@@ -120,7 +120,7 @@ void	put_exit(t_game g)
 	}
 }
 
-void	put_player(t_game g)
+void	put_player(t_game *g)
 {
 	t_texture	t;
 	int			w;
@@ -129,16 +129,16 @@ void	put_player(t_game g)
 	int			j;
 
 	t.path = "./assets/goblin64.xpm";
-	t.img = mlx_xpm_file_to_image(g.mlx, t.path, &w, &h);
+	t.img = mlx_xpm_file_to_image(g->mlx, t.path, &w, &h);
 	i = 0;
-	while (g.map[i] != NULL)
+	while (g->map[i] != NULL)
 	{
 		j = 0;
-		while (g.map[i][j] != '\0')
+		while (g->map[i][j] != '\0')
 		{
-			if (g.map[i][j] == 'P')
+			if (g->map[i][j] == 'P')
 			{
-				mlx_put_image_to_window(g.mlx, g.mlx_win, t.img, j * w, i * h);
+				mlx_put_image_to_window(g->mlx, g->win, t.img, j * w, i * h);
 			}
 			j++;
 		}

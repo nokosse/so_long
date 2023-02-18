@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_init.c                                         :+:      :+:    :+:   */
+/*   events_main.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/17 15:06:37 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/18 13:10:48 by kvisouth         ###   ########.fr       */
+/*   Created: 2023/02/18 12:51:02 by kvisouth          #+#    #+#             */
+/*   Updated: 2023/02/18 13:13:13 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
-// map_dim[0] = height
-// map_dim[1] = width
-void	map_init(t_game *game)
+int	handle_no_event(void *data)
 {
-	int	height;
-	int	width;
+	return (0);
+	(void)data;
+}
 
-	height = game->map_dim[0];
-	width = game->map_dim[1];
-	game->win = mlx_new_window(game->mlx, width * 64, height * 64, "so_long");
-	put_walls(&*game);
-	put_ground(&*game);
-	put_player(&*game);
-	put_coins(&*game);
-	put_exit(&*game);
+int	handle_keypress(int keysym, t_game *data)
+{
+	if (keysym == XK_Escape)
+		mlx_destroy_window(data->mlx, data->win);
+	printf("Key %d pressed\n", keysym);
+	return (0);
+}
+
+int	handle_keyrelease(int keysym, t_game *data)
+{
+	printf("Key %d released\n", keysym);
+	return (0);
+	(void)data;
 }

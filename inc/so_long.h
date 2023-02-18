@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 12:14:39 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/17 17:07:46 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/02/18 13:11:44 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # include "../libft/inc/get_next_line.h"
 # include "../libft/inc/ft_printf.h"
 # include "../mlx_linux/mlx.h"
+# include "X11/X.h"
+# include <X11/keysym.h>
 
 typedef struct s_texture
 {
@@ -45,7 +47,7 @@ typedef struct s_goblin
 typedef struct s_game
 {
 	void		*mlx;
-	void		*mlx_win;
+	void		*win;
 	char		**map;
 	int			*map_dim;
 	t_goblin	*goblin;
@@ -67,11 +69,15 @@ void	print_map(char **map);
 void	free_map(char **map);
 
 void	*window_init(void *mlx, int width, int height);
-void	map_init(t_game game);
-void	put_walls(t_game game);
-void	put_ground(t_game game);
-void	put_coins(t_game game);
-void	put_exit(t_game game);
-void	put_player(t_game game);
+void	map_init(t_game *game);
+void	put_walls(t_game *game);
+void	put_ground(t_game *game);
+void	put_coins(t_game *game);
+void	put_exit(t_game *game);
+void	put_player(t_game *game);
+
+int	handle_no_event(void *data);
+int	handle_keypress(int	keysym, t_game *data);
+int	handle_keyrelease(int keysym, t_game *data);
 
 #endif
