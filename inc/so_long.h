@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 12:14:39 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/18 13:11:44 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/02/18 19:05:28 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,10 @@ void	put_coins(t_game *game);
 void	put_exit(t_game *game);
 void	put_player(t_game *game);
 
-int	handle_no_event(void *data);
+int	render_next_frame(t_game *data);
 int	handle_keypress(int	keysym, t_game *data);
 int	handle_keyrelease(int keysym, t_game *data);
+
+void	move_player(int keysym, t_game *game);
 
 #endif
