@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 12:16:22 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/20 10:10:12 by marvin           ###   ########.fr       */
+/*   Updated: 2023/02/20 10:26:59 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,3 +35,5 @@ int	main(int ac, char **av)
 	mlx_destroy_display(game.mlx);
 	free(game.mlx);
 }
+
+// TODO: unit test for maps (rectangular)
