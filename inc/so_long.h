@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 12:14:39 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/18 19:05:28 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/02/20 10:09:02 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,7 @@ int	handle_keypress(int	keysym, t_game *data);
 int	handle_keyrelease(int keysym, t_game *data);
 
 void	move_player(int keysym, t_game *game);
+
+void	get_player_coords(t_game *game);
 
 #endif

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+         #
+#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/07 12:36:43 by kvisouth          #+#    #+#              #
-#    Updated: 2023/02/18 18:23:05 by kvisouth         ###   ########.fr        #
+#    Updated: 2023/02/20 10:07:28 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRCS =	src/parsing_map_elem.c \
 		src/map_put_elem.c \
 		src/events_main.c \
 		src/event_move.c \
+		src/event_move_coords.c \
 
 OBJS = $(SRCS:src/%.c=obj/%.o) obj/main.o
 HEADERS = inc/so_long.h
