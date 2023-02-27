@@ -1,0 +1,26 @@
+/* XPM */
+static char *door_closed[] = {
+/* columns rows colors chars-per-pixel */
+"16 16 4 1 ",
+"  c #14182E",
+". c #52333F",
+"X c #8F4D57",
+"o c #BD6A62",
+/* pixels */
+"                ",
+" oooXooXoXoXXX. ",
+" XXXXXXXXXXXX.. ",
+"                ",
+" .. ........ .. ",
+" X. ..XXXXX. X. ",
+" XX .XXXXX.. oX ",
+" oX .XX..XX. oX ",
+" oX .XX.XX.. XX ",
+" XX .X.XXXX. oX ",
+" oX .XXX.XX. XX ",
+" XX .X..XXX. XX ",
+" X. .XXXXX.. X. ",
+" .X ..XX.XX. X. ",
+" .. ........ .. ",
+"                "
+};
