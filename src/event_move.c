@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 18:14:21 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/27 17:46:03 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/02/27 19:31:13 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	move_up(t_game *game)
 		game->goblin->coins++;
 		game->goblin->moves++;
 	}
-	else if (game->map[y - 1][x] == 'E')
+	else if (game->map[y - 1][x] == 'E' && game->goblin->coins == game->coins)
 		destroy_window(game);
 }
 
@@ -63,7 +63,7 @@ void	move_left(t_game *game)
 		game->goblin->coins++;
 		game->goblin->moves++;
 	}
-	else if (game->map[y][x - 1] == 'E')
+	else if (game->map[y][x - 1] == 'E' && game->goblin->coins == game->coins)
 		destroy_window(game);
 }
 
@@ -90,7 +90,7 @@ void	move_down(t_game *game)
 		game->goblin->coins++;
 		game->goblin->moves++;
 	}
-	else if (game->map[y + 1][x] == 'E')
+	else if (game->map[y + 1][x] == 'E' && game->goblin->coins == game->coins)
 		destroy_window(game);
 }
 
@@ -117,7 +117,7 @@ void	move_right(t_game *game)
 		game->goblin->coins++;
 		game->goblin->moves++;
 	}
-	else if (game->map[y][x + 1] == 'E')
+	else if (game->map[y][x + 1] == 'E' && game->goblin->coins == game->coins)
 		destroy_window(game);
 }
 

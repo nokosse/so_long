@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 12:16:22 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/27 18:39:58 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/02/27 19:29:03 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,3 @@ int	main(int ac, char **av)
 // TODO : red cross close window
 // TODO : new algorithm to check path (flood fill ?)
 //        check if player can reach E and all C
-// TODO : add game rule : cant exit if not all coins collected 

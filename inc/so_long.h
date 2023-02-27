@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 12:14:39 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/27 17:44:27 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/02/27 19:31:18 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct s_game
 	void		*win;
 	char		**map;
 	int			*map_dim;
+	int			coins;
 	t_goblin	*goblin;
 }			t_game;
 
@@ -70,7 +71,7 @@ void	map_init(t_game *game);
 void	put_walls(t_game *game);
 void	put_ground(t_game *game);
 void	put_coins(t_game *game);
-void	put_exit(t_game *game);
+void	put_exit_closed(t_game *game);
 void	put_player(t_game *game);
 int		render_next_frame(t_game *data);
 int		handle_keypress(int keysym, t_game *data);

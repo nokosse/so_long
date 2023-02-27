@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:49:14 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/18 13:34:47 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/02/27 19:26:45 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	put_coins(t_game *g)
 	mlx_destroy_image(g->mlx, t.img);
 }
 
-void	put_exit(t_game *g)
+void	put_exit_closed(t_game *g)
 {
 	t_texture	t;
 	int			w;
@@ -105,7 +105,7 @@ void	put_exit(t_game *g)
 	int			i;
 	int			j;
 
-	t.path = "./assets/door_open64.xpm";
+	t.path = "./assets/door_closed64.xpm";
 	t.img = mlx_xpm_file_to_image(g->mlx, t.path, &w, &h);
 	i = 0;
 	while (g->map[i] != NULL)
