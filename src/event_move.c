@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 18:14:21 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/27 13:46:29 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/02/27 17:39:38 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	move_up(t_game *game)
 		game->goblin->moves++;
 	}
 	else if (game->map[y - 1][x] == 'E')
-		exit_game(game);
+		destroy_window(game);
 }
 
 // Same but to the left.
@@ -64,7 +64,7 @@ void	move_left(t_game *game)
 		game->goblin->moves++;
 	}
 	else if (game->map[y][x - 1] == 'E')
-		exit_game(game);
+		destroy_window(game);
 }
 
 // Same but downwards.
@@ -91,7 +91,7 @@ void	move_down(t_game *game)
 		game->goblin->moves++;
 	}
 	else if (game->map[y + 1][x] == 'E')
-		exit_game(game);
+		destroy_window(game);
 }
 
 // Same but to the right.
@@ -118,7 +118,7 @@ void	move_right(t_game *game)
 		game->goblin->moves++;
 	}
 	else if (game->map[y][x + 1] == 'E')
-		exit_game(game);
+		destroy_window(game);
 }
 
 // This function is called when the keys W, A, S or D are pressed.
