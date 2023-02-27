@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 12:51:02 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/27 17:41:19 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/02/27 18:44:03 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,12 @@
 // It's called when we press ESC or the cross or reach the Exit
 int	destroy_window(t_game *data)
 {
+	mlx_clear_window(data->mlx, data->win);
 	mlx_destroy_window(data->mlx, data->win);
+	mlx_destroy_display(data->mlx);
 	free_map(data->map);
+	free(data->goblin);
+	free(data->mlx);
 	exit(0);
 }
 
@@ -42,15 +46,14 @@ int	print_moves(t_game *game)
 // These functions are called only if the window is open.
 int	render_next_frame(t_game *data)
 {
-	if (data->win)
-	{
-		put_ground(data);
-		put_player(data);
-	}
+	put_ground(&*data);
+	put_player(&*data);
 	return (0);
+	(void)data;
 }
 
 // This function is called when a key is pressed.
+// And calls destroy_window when we click the cross.
 int	handle_keypress(int keysym, t_game *data)
 {
 	if (keysym == XK_Escape)

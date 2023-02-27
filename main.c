@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 12:16:22 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/27 17:42:39 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/02/27 18:39:58 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ int	main(int ac, char **av)
 	mlx_loop_hook(game.mlx, &render_next_frame, &game);
 	mlx_hook(game.win, KeyPress, KeyPressMask, &handle_keypress, &game);
 	mlx_loop(game.mlx);
-	mlx_destroy_display(game.mlx);
-	free_map(game.map);
-	free(game.goblin);
-	free(game.mlx);
-	write(1, "perfect\n", 8);
 	return (0);
 }
+
+// TODO : red cross close window
+// TODO : new algorithm to check path (flood fill ?)
+//        check if player can reach E and all C
+// TODO : add game rule : cant exit if not all coins collected 
