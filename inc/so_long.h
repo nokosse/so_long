@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 12:14:39 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/27 13:49:05 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/02/27 13:51:28 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ typedef struct s_game
 	t_goblin	*goblin;
 }			t_game;
 
-// MAP PARSING
 int		check_map(int ac, char **av);
 int		get_map_width(char **path);
 int		get_map_height(char **path);
@@ -63,11 +62,9 @@ int		check_map_elements(char **map);
 int		check_possible_path(char **map, int *dimensions);
 int		check_empty(char **path);
 void	err(void);
-
 char	**get_map(char **path);
 void	print_map(char **map);
 void	free_map(char **map);
-
 void	*window_init(void *mlx, int width, int height);
 void	map_init(t_game *game);
 void	put_walls(t_game *game);
@@ -75,11 +72,9 @@ void	put_ground(t_game *game);
 void	put_coins(t_game *game);
 void	put_exit(t_game *game);
 void	put_player(t_game *game);
-
 int		render_next_frame(t_game *data);
 int		handle_keypress(int keysym, t_game *data);
 int		handle_keyrelease(int keysym, t_game *data);
-
 void	move_player(int keysym, t_game *game);
 int		exit_game(t_game *data);
 int		print_moves(t_game *game);
