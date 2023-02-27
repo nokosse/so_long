@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 18:14:21 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/18 19:21:57 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/02/27 12:05:05 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 // the map. It will swap C and P or 0 and P on **map
 void	move_up(t_game *game)
 {
-	printf("fonction pour bouger à gauche\n");
+	printf("fonction pour bouger à haut\n");
 	(void)game;
 }
 

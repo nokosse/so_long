@@ -19,42 +19,44 @@
 // The coordinates at the right of 0, 0 are map[0][1]
 int	get_player_x(t_game *game)
 {
-	int	i;
-	int	j;
+	int	x;
+	int	y;
 
-	i = 0;
-	while (game->map[i])
+	x = 0;
+	y = 0;
+	while (game->map[y])
 	{
-		j = 0;
-		while (game->map[i][j])
+		while (game->map[y][x])
 		{
-			if (game->map[i][j] == 'P')
-				return (j);
-			j++;
+			if (game->map[y][x] == 'P')
+				return (x);
+			x++;
 		}
-		i++;
+		x = 0;
+		y++;
 	}
-	return (-1);
+	return (0);
 }
 
 int	get_player_y(t_game *game)
 {
-	int	i;
-	int	j;
+	int	x;
+	int	y;
 
-	i = 0;
-	while (game->map[i])
+	x = 0;
+	y = 0;
+	while (game->map[y])
 	{
-		j = 0;
-		while (game->map[i][j])
+		while (game->map[y][x])
 		{
-			if (game->map[i][j] == 'P')
-				return (i);
-			j++;
+			if (game->map[y][x] == 'P')
+				return (y);
+			x++;
 		}
-		i++;
+		x = 0;
+		y++;
 	}
-	return (-1);
+	return (0);
 }
 
 void	get_player_coords(t_game *game)
