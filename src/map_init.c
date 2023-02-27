@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 15:06:37 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/27 12:04:27 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/02/27 12:51:10 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,5 @@ void	map_init(t_game *game)
 	put_coins(&*game);
 	put_exit(&*game);
 	free(game->map_dim);
+	get_player_coords(&*game);
 }

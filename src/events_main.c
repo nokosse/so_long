@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events_main.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 12:51:02 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/20 09:43:27 by marvin           ###   ########.fr       */
+/*   Updated: 2023/02/27 13:05:21 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,11 @@
 // For the test, it will just print the map instead of rendering it.
 int	render_next_frame(t_game *data)
 {
-	// print_map(data->map);
-	// write(1, "\n", 1);
+	put_walls(&*data);
+	put_ground(&*data);
+	put_coins(&*data);
+	put_exit(&*data);
+	put_player(&*data);
 	return (0);
 	(void)data;
 }
