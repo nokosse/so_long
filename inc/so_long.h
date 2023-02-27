@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 12:14:39 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/20 10:09:02 by marvin           ###   ########.fr       */
+/*   Updated: 2023/02/27 13:49:05 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,13 @@ void	put_coins(t_game *game);
 void	put_exit(t_game *game);
 void	put_player(t_game *game);
 
-int	render_next_frame(t_game *data);
-int	handle_keypress(int	keysym, t_game *data);
-int	handle_keyrelease(int keysym, t_game *data);
+int		render_next_frame(t_game *data);
+int		handle_keypress(int keysym, t_game *data);
+int		handle_keyrelease(int keysym, t_game *data);
 
 void	move_player(int keysym, t_game *game);
+int		exit_game(t_game *data);
+int		print_moves(t_game *game);
 
 void	get_player_coords(t_game *game);
 

@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 18:14:21 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/27 12:58:28 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/02/27 13:46:29 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	move_up(t_game *game)
 		game->map[y - 1][x] = 'P';
 		game->map[y][x] = '0';
 		game->goblin->y--;
+		game->goblin->moves++;
 	}
 	else if (game->map[y - 1][x] == 'C')
 	{
@@ -33,14 +34,10 @@ void	move_up(t_game *game)
 		game->map[y][x] = '0';
 		game->goblin->y--;
 		game->goblin->coins++;
+		game->goblin->moves++;
 	}
 	else if (game->map[y - 1][x] == 'E')
-	{
-		game->map[y - 1][x] = 'P';
-		game->map[y][x] = '0';
-		game->goblin->y--;
-		game->goblin->coins++;
-	}
+		exit_game(game);
 }
 
 // Same but to the left.
@@ -56,6 +53,7 @@ void	move_left(t_game *game)
 		game->map[y][x - 1] = 'P';
 		game->map[y][x] = '0';
 		game->goblin->x--;
+		game->goblin->moves++;
 	}
 	else if (game->map[y][x - 1] == 'C')
 	{
@@ -63,14 +61,10 @@ void	move_left(t_game *game)
 		game->map[y][x] = '0';
 		game->goblin->x--;
 		game->goblin->coins++;
+		game->goblin->moves++;
 	}
 	else if (game->map[y][x - 1] == 'E')
-	{
-		game->map[y][x - 1] = 'P';
-		game->map[y][x] = '0';
-		game->goblin->x--;
-		game->goblin->coins++;
-	}
+		exit_game(game);
 }
 
 // Same but downwards.
@@ -86,6 +80,7 @@ void	move_down(t_game *game)
 		game->map[y + 1][x] = 'P';
 		game->map[y][x] = '0';
 		game->goblin->y++;
+		game->goblin->moves++;
 	}
 	else if (game->map[y + 1][x] == 'C')
 	{
@@ -93,14 +88,10 @@ void	move_down(t_game *game)
 		game->map[y][x] = '0';
 		game->goblin->y++;
 		game->goblin->coins++;
+		game->goblin->moves++;
 	}
 	else if (game->map[y + 1][x] == 'E')
-	{
-		game->map[y + 1][x] = 'P';
-		game->map[y][x] = '0';
-		game->goblin->y++;
-		game->goblin->coins++;
-	}
+		exit_game(game);
 }
 
 // Same but to the right.
@@ -116,6 +107,7 @@ void	move_right(t_game *game)
 		game->map[y][x + 1] = 'P';
 		game->map[y][x] = '0';
 		game->goblin->x++;
+		game->goblin->moves++;
 	}
 	else if (game->map[y][x + 1] == 'C')
 	{
@@ -123,14 +115,10 @@ void	move_right(t_game *game)
 		game->map[y][x] = '0';
 		game->goblin->x++;
 		game->goblin->coins++;
+		game->goblin->moves++;
 	}
 	else if (game->map[y][x + 1] == 'E')
-	{
-		game->map[y][x + 1] = 'P';
-		game->map[y][x] = '0';
-		game->goblin->x++;
-		game->goblin->coins++;
-	}
+		exit_game(game);
 }
 
 // This function is called when the keys W, A, S or D are pressed.
@@ -145,5 +133,6 @@ void	move_player(int keysym, t_game *game)
 		move_down(game);
 	if (keysym == XK_d || keysym == XK_Right)
 		move_right(game);
+	print_moves(game);
 	(void)game;
 }

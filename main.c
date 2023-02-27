@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 12:16:22 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/27 13:06:23 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/02/27 13:48:19 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,8 @@ int	main(int ac, char **av)
 	mlx_hook(game.win, KeyPress, KeyPressMask, &handle_keypress, &game);
 	mlx_hook(game.win, KeyRelease, KeyReleaseMask, &handle_keyrelease, &game);
 	mlx_loop(game.mlx);
-	free_map(game.map);
 	mlx_destroy_display(game.mlx);
+	free_map(game.map);
+	free(game.goblin);
 	free(game.mlx);
 }
-
-// TODO: unit test for maps (rectangular)
