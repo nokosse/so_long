@@ -6,7 +6,7 @@
 #    By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/07 12:36:43 by kvisouth          #+#    #+#              #
-#    Updated: 2023/02/27 16:59:03 by kvisouth         ###   ########.fr        #
+#    Updated: 2023/03/01 19:30:57 by kvisouth         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,6 @@ SRCS =	src/parsing_map_elem.c \
 		src/parsing_utils.c \
 		src/parsing.c \
 		src/get_map.c \
-		src/window_init.c \
 		src/map_init.c \
 		src/map_put_elem.c \
 		src/events_main.c \
