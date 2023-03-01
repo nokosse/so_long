@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 11:14:42 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/03/01 17:53:45 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/03/01 17:56:56 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,6 @@ int	flood_fill(char **map, int width, int height)
 		i++;
 	}
 	if (check_for_elem(map, width, height) == 0)
-		return (0);
-	return (1);
+		return (free(pos), 0);
+	return (free(pos), 1);
 }
