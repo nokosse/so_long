@@ -6,119 +6,135 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 11:14:42 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/27 18:36:15 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/03/01 17:53:45 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
-// This is the DFS algorithm.
-// This function implements a depth-first search (DFS) algorithm that searches
-// for a path from the current position in the maze to the exit. The function
-// takes in a 2D array map representing the maze, the current position
-// row and col and the dimensions of the map dimensions.
+// flood_fill algorithm, to check if the player can reach :
+// ALL the coins in the map AND the only exit in the map.
+// If it's not the case, return 0, else return 1.
 
-// The function first checks if the current position is out of bounds or
-// if it has already been visited. If either condition is true
-// the function returns 0 (false). If the current position is the exit
-// the function returns 1 (true).
-
-// If the current position has not been visited and is not the exit
-// the function marks the current position as visited by setting the value
-// in the map array to '1'. It then recursively calls itself for each
-// neighboring cell and combines the results using bitwise OR (|=).
-// Finally, it returns the result.
-int	dfs(char **map, int row, int col, int *dimensions)
+// Function to get the player position in the map.
+// pos[0] = x, pos[1] = y.
+int	*get_pos(char **map, int width, int height)
 {
-	int	res;
+	int	*pos;
+	int	i;
+	int	j;
 
-	if (row < 0 || row >= dimensions[0] || col < 0 || col >= dimensions[1]
-		|| map[row][col] == '1')
-		return (0);
-	if (map[row][col] == 'E')
-		return (1);
-	res = 0;
-	map[row][col] = '1';
-	res |= dfs(map, row - 1, col, dimensions);
-	res |= dfs(map, row + 1, col, dimensions);
-	res |= dfs(map, row, col - 1, dimensions);
-	res |= dfs(map, row, col + 1, dimensions);
-	return (res);
+	pos = malloc(sizeof(int) * 2);
+	i = 0;
+	while (i < height)
+	{
+		j = 0;
+		while (j < width)
+		{
+			if (map[i][j] == 'P')
+			{
+				pos[0] = i;
+				pos[1] = j;
+				return (pos);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (pos);
 }
 
-// This function is used to make check_possible_path shorter.
-// I was using that loop in check_possible_path, but I just split it into
-// this function.
-
-// The purpose of the check_loop function is to iterate over the entire maze
-// and find the player's position and the row index of the exit. It does this
-// by using two nested loops to visit each cell in the maze. For each cell
-// it checks whether the value is 'P' or 'E' and updates the corresponding
-// variables accordingly.
-
-// If the function finds the player's position and the exit row index
-// it will update the player_pos array and the exit_row variable passed by
-// reference to the function. If the player's position or the exit row index
-// is not found in the maze, these variables will be set to -1.
-
-// Once the check_loop function has completed its execution, the player_pos
-// and exit_row variables will contain the necessary information to determine
-// if there is a path from the player to the exit in the maze.
-void	check_loop(char **map, int *dims, int *player_pos, int *exit_row)
+// Function to check if there is still some 'C' or 'E' in the map.
+// Returns 0 if there is still some, else returns 1.
+int	check_for_elem(char **map, int width, int height)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (i < dims[0])
+	while (i < height)
 	{
 		j = 0;
-		while (j < dims[1])
+		while (j < width)
 		{
-			if (map[i][j] == 'P')
-			{
-				player_pos[0] = i;
-				player_pos[1] = j;
-			}
-			if (map[i][j] == 'E')
-				*exit_row = i;
+			if (map[i][j] == 'C' || map[i][j] == 'E')
+				return (0);
 			j++;
 		}
 		i++;
 	}
+	return (1);
 }
 
-// This function is used to make check_possible_path shorter.
-// I was using height and width as parameters, but I changed it to dimensions.
-// I have to use this because I need to send less than 5 parameters to
-// check_loop function.
-int	*player_col_row(void)
+// Function to fill the map with 'X' starting from the player position (x, y).
+// pos[0] = x, pos[1] = y.
+// It returns the modified map.
+// We recursively call the function to fill the map with X in every directions.
+char	**fill_map(char **map, int width, int height, int *pos)
 {
-	int	*player_pos;
-
-	player_pos = (int *)malloc(sizeof(int) * 2);
-	if (!player_pos)
-		return (NULL);
-	player_pos[0] = -1;
-	player_pos[1] = -1;
-	return (player_pos);
+	if (pos[0] < 0 || pos[0] >= height || pos[1] < 0 || pos[1] >= width)
+		return (map);
+	if (map[pos[0]][pos[1]] == '1')
+		return (map);
+	if (map[pos[0]][pos[1]] == 'X')
+		return (map);
+	map[pos[0]][pos[1]] = 'X';
+	fill_map(map, width, height, (int []){pos[0] + 1, pos[1]});
+	fill_map(map, width, height, (int []){pos[0] - 1, pos[1]});
+	fill_map(map, width, height, (int []){pos[0], pos[1] + 1});
+	fill_map(map, width, height, (int []){pos[0], pos[1] - 1});
+	return (map);
 }
 
-// This function check if there is a possible path from player to exit.
-// It is using DFS algorithm.
-int	check_possible_path(char **map, int *dimensions)
+// Function to print the map filled with 'X'.
+// For testing purpose.
+void	print_map_filled(char **map, int width, int height)
 {
-	int	*player_pos;
-	int	exit_row;
-	int	row;
-	int	col;
+	int	i;
+	int	j;
 
-	player_pos = player_col_row();
-	check_loop(map, dimensions, player_pos, &exit_row);
-	if (player_pos[0] == -1 || exit_row == -1)
+	i = 0;
+	while (i < height)
+	{
+		j = 0;
+		while (j < width)
+		{
+			printf("%c", map[i][j]);
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
+}
+
+// function flood_fill.
+// It will fill the map with 'X' starting from the player position (x, y).
+// pos[0] = x, pos[1] = y.
+// It can fill every characters (P, C, E, 0) exept the walls (1).
+// Once the map is filled we will check if there is still some 'C' or 'E'.
+// If there is still some : it means they are unreachable, so we return 0.
+// If there is no more C or E in map : it means we can reach all of them.
+int	flood_fill(char **map, int width, int height)
+{
+	int	*pos;
+	int	i;
+	int	j;
+
+	pos = get_pos(map, width, height);
+	map = fill_map(map, width, height, pos);
+	i = 0;
+	while (i < height)
+	{
+		j = 0;
+		while (j < width)
+		{
+			if (map[i][j] == 'X')
+				map[i][j] = '0';
+			j++;
+		}
+		i++;
+	}
+	if (check_for_elem(map, width, height) == 0)
 		return (0);
-	row = player_pos[0];
-	col = player_pos[1];
-	free(player_pos);
-	return (dfs(map, row, col, dimensions));
+	return (1);
 }

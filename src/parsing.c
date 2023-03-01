@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 12:16:43 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/03/01 17:30:52 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/03/01 17:41:54 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ int	check_map(int ac, char **av)
 	map = get_map(av);
 	if ((!check_map_surrounded(map)) || (!check_map_elements(map)))
 		return (free(dimensions), free_map(map), 0);
-	if (check_possible_path(map, dimensions) == 0)
+	if (flood_fill(map, width, height) == 0)
 	{
 		err();
 		write(2, "No paths to finish the game !\n", 30);
