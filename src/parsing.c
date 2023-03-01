@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 12:16:43 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/03/01 17:08:49 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/03/01 17:30:52 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ int	check_map_width(char **path)
 // - The map must be surrounded by walls.
 // - There must be at least 1 path to the exit from P to E.
 // This is all the given conditions by the fr.subject.pdf
+// dimensions[0] = height, dimensions[1] = width.
 int	check_map(int ac, char **av)
 {
 	int		height;
