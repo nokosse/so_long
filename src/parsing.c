@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 12:16:43 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/28 19:49:55 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/03/01 17:08:49 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ int	check_map(int ac, char **av)
 	if (check_possible_path(map, dimensions) == 0)
 	{
 		err();
-		write(2, "There is no path to the exit for the goblin !\n", 46);
+		write(2, "No paths to finish the game !\n", 30);
 		return (free(dimensions), free_map(map), 0);
 	}
 	return (free(dimensions), free_map(map), 1);
