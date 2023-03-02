@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 13:27:11 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/03/02 13:48:47 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/03/02 14:08:31 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ static char	**fill_map(char **map, int width, int height, int *pos)
 }
 
 // Function that will transform the 'E' to '1' in the map.
-char **transform_exit(char **map, int width, int height)
+char	**transform_exit(char **map, int width, int height)
 {
 	int	i;
 	int	j;
