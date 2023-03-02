@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:55:50 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/02/17 14:18:56 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/03/02 15:13:41 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ char	**get_map(char **path)
 		map[i] = get_next_line(fd);
 		i++;
 	}
+	while (get_next_line(fd) != NULL)
+		;
 	map[i] = NULL;
 	close(fd);
 	map = erease_n(&map, dimensions);

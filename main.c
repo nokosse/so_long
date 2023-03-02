@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 12:16:22 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/03/02 13:26:24 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/03/02 14:16:19 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,3 @@ int	main(int ac, char **av)
 }
 
 // TODO : Not accepting any \n at the end and start of the map
-// TODO : Flood fill that checks if the exit is blocking coins

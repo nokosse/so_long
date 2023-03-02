@@ -6,7 +6,7 @@
 #    By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/07 12:36:43 by kvisouth          #+#    #+#              #
-#    Updated: 2023/03/02 13:26:52 by kvisouth         ###   ########.fr        #
+#    Updated: 2023/03/02 14:25:55 by kvisouth         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@
 NAME = so_long
 SRCS =	src/parsing_map_elem.c \
 		src/parsing_map_walls.c \
+		src/parsing_map_junk.c \
 		src/parsing_paths.c \
 		src/parsing_paths2.c \
 		src/parsing_utils.c \

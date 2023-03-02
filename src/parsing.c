@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 12:16:43 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/03/02 13:50:06 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/03/02 15:02:28 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,8 @@ int	check_map(int ac, char **av)
 	int		*dimensions;
 	char	**map;
 
+	if (check_map_junk(av) == 0)
+		return (0);
 	if (!(map_file_exist(ac, av)) || check_empty(av) || !(check_map_width(av)))
 		return (0);
 	height = get_map_height(av);
