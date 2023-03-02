@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 12:16:43 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/03/02 15:15:51 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/03/02 16:16:05 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,9 +109,8 @@ int	check_map(int ac, char **av)
 	int		width;
 	int		*dimensions;
 	char	**map;
+	char	**map_copy;
 
-	if (check_map_junk(av) == 0)
-		return (0);
 	if (!(map_file_exist(ac, av)) || check_empty(av) || !(check_map_width(av))
 		|| !(check_map_junk(av)))
 		return (0);
@@ -119,16 +118,13 @@ int	check_map(int ac, char **av)
 	width = get_map_width(av) - 1;
 	dimensions = get_dims(height, width);
 	map = get_map(av);
+	map_copy = get_map(av);
 	if ((!check_map_surrounded(map)) || (!check_map_elements(map)))
-		return (free(dimensions), free_map(map), 0);
-	if (flood_fill2(map, width, height) == 0
-		&& flood_fill(map, width, height) == 0)
-	{
-		err();
-		write(2, "No paths to finish the game !\n", 30);
-		return (free(dimensions), free_map(map), 0);
-	}
-	return (free(dimensions), free_map(map), 1);
+		return (free(dimensions), free_map(map), free_map(map_copy), 0);
+	if (flood_fill(map, width, height) == 0
+		|| flood_fill2(map_copy, width, height) == 0)
+		return (free(dimensions), free_map(map), free_map(map_copy), 0);
+	return (free(dimensions), free_map(map), free_map(map_copy), 1);
 }
 
 // To check if check_map() is working you can test the following cases :
