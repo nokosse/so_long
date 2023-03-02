@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_paths.c                                    :+:      :+:    :+:   */
+/*   parsing_paths2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/16 11:14:42 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/03/02 13:48:26 by kvisouth         ###   ########.fr       */
+/*   Created: 2023/03/02 13:27:11 by kvisouth          #+#    #+#             */
+/*   Updated: 2023/03/02 13:48:47 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,27 @@ static char	**fill_map(char **map, int width, int height, int *pos)
 	return (map);
 }
 
+// Function that will transform the 'E' to '1' in the map.
+char **transform_exit(char **map, int width, int height)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < height)
+	{
+		j = 0;
+		while (j < width)
+		{
+			if (map[i][j] == 'E')
+				map[i][j] = '1';
+			j++;
+		}
+		i++;
+	}
+	return (map);
+}
+
 // function flood_fill.
 // It will fill the map with 'X' starting from the player position (x, y).
 // pos[0] = x, pos[1] = y.
@@ -93,13 +114,14 @@ static char	**fill_map(char **map, int width, int height, int *pos)
 // Once the map is filled we will check if there is still some 'C' or 'E'.
 // If there is still some : it means they are unreachable, so we return 0.
 // If there is no more C or E in map : it means we can reach all of them.
-int	flood_fill(char **map, int width, int height)
+int	flood_fill2(char **map, int width, int height)
 {
 	int	*pos;
 	int	i;
 	int	j;
 
 	pos = get_pos(map, width, height);
+	map = transform_exit(map, width, height);
 	map = fill_map(map, width, height, pos);
 	write(1, "\n", 1);
 	i = 0;
