@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 14:18:04 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/03/02 15:12:01 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/03/04 14:44:28 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ char	**file_to_2d_array(char **path)
 	fd = open(path[1], O_RDONLY);
 	line = get_next_line(fd);
 	map = malloc(sizeof(char *) * (count_lines(path) + 1));
+	if (map == NULL)
+		return (NULL);
 	while (line != NULL)
 	{
 		map[i] = ft_strdup(line);

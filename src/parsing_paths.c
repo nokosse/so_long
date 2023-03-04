@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 11:14:42 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/03/02 16:14:02 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/03/04 14:44:37 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static int	*get_pos(char **map, int width, int height)
 	int	j;
 
 	pos = malloc(sizeof(int) * 2);
+	if (pos == NULL)
+		return (NULL);
 	i = 0;
 	while (i < height)
 	{
