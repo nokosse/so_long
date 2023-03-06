@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 12:16:43 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/03/06 13:54:47 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/03/06 14:08:06 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	check_map_width(char **path)
 	{
 		if (ft_strlen(line) != width)
 		{
-			write(2, "Map is not rectangular.\n", 24);
+			write(2, "Map is not rectangular OR newline is missing\n", 45);
 			while (line != NULL)
 			{
 				free(line);
