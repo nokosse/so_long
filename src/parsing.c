@@ -6,7 +6,7 @@
 /*   By: kvisouth <kvisouth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 12:16:43 by kvisouth          #+#    #+#             */
-/*   Updated: 2023/03/02 16:33:56 by kvisouth         ###   ########.fr       */
+/*   Updated: 2023/03/06 13:54:47 by kvisouth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,55 +41,35 @@ int	map_file_exist(int ac, char **av)
 	return (1);
 }
 
-// This function will check if all the lines in the map are the same length.
-// It read the first line and get it's length with ft_strlen.
-// Then it read all the other lines, comparing to the first line length.
-// If the length is different, it will return 0.
-// It frees the line readed and the line readed before.
-int	check_width_loop(int fd, int width)
-{
-	char	*line;
-	int		i;
-
-	line = get_next_line(fd);
-	while (line != NULL)
-	{
-		i = ft_strlen(line);
-		if (line[i - 1] != '\n')
-			i++;
-		free(line);
-		line = get_next_line(fd);
-		if (i != width)
-		{
-			i = 0;
-			while (i < width)
-			{
-				free(line);
-				line = get_next_line(fd);
-				i++;
-			}
-			return (0);
-		}
-	}
-	return (free(line), 1);
-}
-
+// This function will compare the length of the first line of the file
+// to the length of the other lines.
+// If all the length of all lines are the same, it will return 1.
+// If not, it will return 0.
 int	check_map_width(char **path)
 {
 	int		fd;
 	char	*line;
-	int		width;
+	size_t	width;
 
 	fd = open(path[1], O_RDONLY);
 	line = get_next_line(fd);
 	width = ft_strlen(line);
 	free(line);
-	if (!check_width_loop(fd, width))
+	line = get_next_line(fd);
+	while (line != NULL)
 	{
-		close(fd);
-		err();
-		return (write(2, "The map exist but is not rectangular !\n", 39), 0);
-		return (0);
+		if (ft_strlen(line) != width)
+		{
+			write(2, "Map is not rectangular.\n", 24);
+			while (line != NULL)
+			{
+				free(line);
+				line = get_next_line(fd);
+			}
+			return (free(line), close(fd), 0);
+		}
+		free(line);
+		line = get_next_line(fd);
 	}
 	return (close(fd), 1);
 }
